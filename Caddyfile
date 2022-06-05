@@ -1,0 +1,17 @@
+http://127.0.0.1/
+
+route /api/v1/* {
+        uri strip_prefix /api/v1
+        reverse_proxy log_mocks:4017
+        
+}
+
+
+route /* {
+	reverse_proxy clientes_mock:4011
+}
+
+# Redirección a Swagger-UI de la "página principal" desde http://127.0.0.1
+route / {
+        redir http://127.0.0.1:8007/
+        
